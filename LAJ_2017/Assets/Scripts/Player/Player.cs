@@ -13,25 +13,25 @@ public class Player : MonoBehaviour {
 	void Update () {
         //Move me to InputHandler / callbacks
         if (Input.GetKey(KeyCode.W)) {
-            _rigidbody.AddForce(this.transform.forward * 2f); 
+            _rigidbody.AddForce(this.transform.forward * 1f); 
         }
         
         if (Input.GetKey(KeyCode.A)) {
             Quaternion q = _rigidbody.rotation;
             Vector3 v = q.eulerAngles;
-            v.y -= 1f;
+            v.y -= 2.5f;
             q.eulerAngles = v; 
             _rigidbody.rotation = q;
         }
 
         if (Input.GetKey(KeyCode.S)) {
-            _rigidbody.AddForce(this.transform.forward * -2f);
+            _rigidbody.AddForce(this.transform.forward * -1f);
         }
 
         if (Input.GetKey(KeyCode.D)) {
             Quaternion q = _rigidbody.rotation;
             Vector3 v = q.eulerAngles;
-            v.y += 1f;
+            v.y += 2.5f;
             q.eulerAngles = v;
             _rigidbody.rotation = q;
         }
