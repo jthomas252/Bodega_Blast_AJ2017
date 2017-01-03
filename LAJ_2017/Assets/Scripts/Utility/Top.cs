@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Top : MonoBehaviour {
+/*
+ * Top.cs
+ * 
+ * Class for defining constants
+ */
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+namespace LAJ2017 {
+    public class Top : MonoBehaviour {
+
+    }
 }
