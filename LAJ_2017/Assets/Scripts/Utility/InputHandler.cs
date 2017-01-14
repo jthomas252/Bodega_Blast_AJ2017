@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine; 
 
-namespace LAJ2017 {
+namespace LAJ_2017 {
     public class InputHandler : MonoBehaviour {
         public delegate void InputEvent(bool pressed);
 

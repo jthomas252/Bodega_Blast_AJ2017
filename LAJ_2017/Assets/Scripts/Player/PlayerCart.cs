@@ -1,44 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LAJ2017 {
+namespace LAJ_2017 {
     public class PlayerCart : MonoBehaviour {
-        
+        private WheelSet wheelSet; 
+
         public float turningSpeed     = 2.5f; 
         public float accelerationRate = 4f; 
-
-        private Wheel[] wheels;
-
         
         // Use this for initialization
-        void Start() {
-            wheels = GetComponentsInChildren<Wheel>();
+        private void Start() {
+            wheelSet       = new WheelSet(); 
+            Wheel[] wheels = GetComponentsInChildren<Wheel>();
+            wheelSet.SetWheelGroup(wheels); 
         }
 
         // Update is called once per frame
-        void Update() {
+        private void Update() {
             if (Input.GetKey(KeyCode.W)) {
-                for (int i = 0; i < wheels.Length; ++i) {
-                    wheels[i].Accelerate(accelerationRate * Time.deltaTime);
-                }
+                wheelSet.AccelerateAll(accelerationRate);
+            } else if (Input.GetKey(KeyCode.S)) {
+                wheelSet.AccelerateAll(-accelerationRate);
+            } else {
+                wheelSet.AccelerateAll(0);
             }
 
             if (Input.GetKey(KeyCode.A)) {
-                for (int i = 0; i < wheels.Length; ++i) {
-                    wheels[i].Turn(-turningSpeed * Time.deltaTime);
-                }
-            }
-
-            if (Input.GetKey(KeyCode.S)) {
-                for (int i = 0; i < wheels.Length; ++i) {
-                    wheels[i].Brake(accelerationRate * Time.deltaTime); 
-                }
+                wheelSet.TurnAll(-turningSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D)) {
-                for (int i = 0; i < wheels.Length; ++i) {
-                    wheels[i].Turn(turningSpeed * Time.deltaTime); 
-                }
+                wheelSet.TurnAll(turningSpeed * Time.deltaTime); 
+            }
+
+            if (Input.GetKey(KeyCode.Space)) {
+
+            } else {
+
             }
         }
     }

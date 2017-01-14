@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LAJ2017 {
+namespace LAJ_2017 {
     [RequireComponent (typeof (WheelCollider))]
     public class Wheel : MonoBehaviour {
         private WheelCollider wheelCollider; 
@@ -20,8 +20,6 @@ namespace LAJ2017 {
         }
 
         public void Update() {
-            Debug.Log(wheelCollider.motorTorque);
-            Debug.Log(wheelCollider.steerAngle);
             wheelMesh.transform.Rotate(new Vector3(wheelCollider.motorTorque, 0f));
             if (wheelCollider.motorTorque > 0) { 
                 wheelCollider.motorTorque -= (speedDecay * Time.deltaTime);
@@ -31,8 +29,7 @@ namespace LAJ2017 {
         }
 
         public void Accelerate(float speed) {
-            wheelCollider.motorTorque += speed; 
-            if (wheelCollider.motorTorque > maxSpeed) wheelCollider.motorTorque = maxSpeed; 
+            wheelCollider.motorTorque = speed; 
         }
 
         public void Turn(float speed) {
@@ -54,8 +51,11 @@ namespace LAJ2017 {
         }
 
         public void Brake(float speed) {
-            wheelCollider.motorTorque -= speed;
-            if (wheelCollider.motorTorque < -maxSpeed) wheelCollider.motorTorque = -maxSpeed; 
+            wheelCollider.brakeTorque = speed; 
+        }
+
+        public void KillMomentum() {
+            wheelCollider.motorTorque = 0;
         }
     }
 }

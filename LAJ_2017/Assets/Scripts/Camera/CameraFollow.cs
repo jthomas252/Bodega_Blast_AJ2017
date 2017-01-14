@@ -1,32 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollow : MonoBehaviour {
-    public GameObject followObject; 
-    
-    public Vector3 basePosition; 
-    public Vector3 baseRotation; 
+namespace LAJ_2017 {
+    public class CameraFollow : MonoBehaviour {
+        public GameObject followObject;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    this.transform.position = new Vector3(
-            followObject.transform.position.x,
-            followObject.transform.position.y + basePosition.y,
-            followObject.transform.position.z + basePosition.z
-            );
+        public Vector3 basePosition;
+        public Vector3 baseRotation;
 
-        Quaternion q = followObject.transform.rotation; 
+        private void Aware() {
+        }
 
-        q.eulerAngles = new Vector3(
-            followObject.transform.rotation.x + baseRotation.x,
-            followObject.transform.rotation.y,
-            this.transform.rotation.z
-            );
+        private void Update() {
+            this.transform.position = new Vector3(
+                followObject.transform.position.x,
+                followObject.transform.position.y + basePosition.y,
+                followObject.transform.position.z + basePosition.z
+                );
 
-        this.transform.rotation = q; 
-	}
+            Quaternion q = followObject.transform.rotation;
+
+            q.eulerAngles = new Vector3(
+                followObject.transform.rotation.x + baseRotation.x,
+                followObject.transform.rotation.y,
+                this.transform.rotation.z
+                );
+
+            this.transform.rotation = q;
+        }
+    }
 }
