@@ -7,8 +7,11 @@ using System.Collections;
  * Class for defining constants
  */
 
-namespace LAJ2017 {
-    public class Top : MonoBehaviour {
-
+namespace LAJ_2017 {
+    public class Top {
+        public static GameHandler      gameHandler; 
+        public static InputHandler     inputHandler; 
+        public static SoundHandler     soundHandler; 
+        public static InterfaceHandler interfaceHandler;
     }
 }

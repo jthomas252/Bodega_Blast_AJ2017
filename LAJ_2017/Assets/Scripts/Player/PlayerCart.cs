@@ -3,8 +3,8 @@ using System.Collections;
 
 namespace LAJ_2017 {
     public class PlayerCart : MonoBehaviour {
-        private const float _minimumTip    = 25f; 
-        private const float _tipCorrection = 35f; 
+        private const float _minimumTip    = 15f; 
+        private const float _tipCorrection = 25f; 
 
         private WheelSet wheelSet; 
 
@@ -13,6 +13,8 @@ namespace LAJ_2017 {
 
         public Material characterSprite; 
         public Texture2D text; 
+
+        public Vector3 collectionPoint; 
         
         // Use this for initialization
         private void Start() {
@@ -59,6 +61,11 @@ namespace LAJ_2017 {
                 rotation.x = Mathf.Clamp(rotation.x, -_tipCorrection, _tipCorrection);
                 this.transform.localEulerAngles = rotation;
             }
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.cyan; 
+            Gizmos.DrawSphere(transform.position + collectionPoint, 0.1f); 
         }
     }
 }

@@ -1,15 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameHandler : MonoBehaviour {
+namespace LAJ_2017 {
+    public class GameHandler : MonoBehaviour {
+        private bool _paused;
+        public bool paused {
+            get {
+                return _paused; 
+            }
+        }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        public float missionTime = 300.00f;
+
+        private void Awake() {
+            _paused = false; 
+        }
+
+        private void Update() {
+            if (!paused) {
+                Debug.Log(Time.deltaTime);
+                missionTime -= Time.deltaTime;
+                Top.interfaceHandler.UpdateTime(missionTime);
+            }
+        }
+    }
 }
