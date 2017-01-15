@@ -19,7 +19,6 @@ namespace LAJ_2017 {
 
             Vector3 updatedRot = followObject.transform.localEulerAngles;
             updatedRot.x       = baseRotation.x; 
-            updatedRot.z       = baseRotation.z; 
 
             transform.position         = updatedPos;
             transform.localEulerAngles = updatedRot;

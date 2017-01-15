@@ -6,9 +6,9 @@ namespace LAJ_2017 {
         public int value; 
 
         private void OnTriggerEnter(Collider col) {
-            //Change this to fly into the players cart
-            Debug.Log("Collected");
-            Destroy(this.gameObject); 
+            if (col.GetComponent<PlayerCart>()) {
+                Destroy(gameObject);
+            }
         }
 
         private void Update() {

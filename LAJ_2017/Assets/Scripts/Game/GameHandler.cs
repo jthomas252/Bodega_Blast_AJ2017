@@ -18,7 +18,6 @@ namespace LAJ_2017 {
 
         private void Update() {
             if (!paused) {
-                Debug.Log(Time.deltaTime);
                 missionTime -= Time.deltaTime;
                 Top.interfaceHandler.UpdateTime(missionTime);
             }

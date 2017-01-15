@@ -3,8 +3,8 @@ using System.Collections;
 
 namespace LAJ_2017 {
     public class PlayerCart : MonoBehaviour {
-        private const float _minimumTip    = 15f; 
-        private const float _tipCorrection = 25f; 
+        private const float _minimumTip    = 5f; 
+        private const float _tipCorrection = 15f; 
 
         private WheelSet wheelSet; 
 
