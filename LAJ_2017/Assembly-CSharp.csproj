@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{AA6DF140-C2C3-D757-8F0D-AB41264D9047}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -46,24 +45,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FlipOverPoint.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\Cart\Wheel.cs" />
-    <Compile Include="Assets\Scripts\Game\Collectable.cs" />
-    <Compile Include="Assets\Scripts\Game\GameHandler.cs" />
-    <Compile Include="Assets\Scripts\Interface\InterfaceHandler.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerCart.cs" />
-    <Compile Include="Assets\Scripts\Utility\InputHandler.cs" />
-    <Compile Include="Assets\Scripts\Utility\Top.cs" />
-    <Compile Include="Assets\Scripts\WheelSet.cs" />
-    <None Include="Assets\Sounds\blank.txt" />
-    <None Include="Assets\Shaders\Billboard.shader" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Cart\Wheel.cs" />
+     <Compile Include="Assets\Scripts\Game\Collectable.cs" />
+     <Compile Include="Assets\Scripts\Game\GameHandler.cs" />
+     <Compile Include="Assets\Scripts\Interface\InterfaceHandler.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerCart.cs" />
+     <Compile Include="Assets\Scripts\SpriteBillboard.cs" />
+     <Compile Include="Assets\Scripts\Utility\InputHandler.cs" />
+     <Compile Include="Assets\Scripts\Utility\Top.cs" />
+     <Compile Include="Assets\Scripts\WheelSet.cs" />
+     <None Include="Assets\Sounds\blank.txt" />
+     <None Include="Assets\Shaders\Billboard.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -73,4 +72,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

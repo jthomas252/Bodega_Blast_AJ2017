@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace LAJ_2017 {
-    public class WheelSet : MonoBehaviour {
+    public class WheelSet {
         private Wheel[] _wheels;
 
         public void SetWheelGroup(Wheel[] wheels) {

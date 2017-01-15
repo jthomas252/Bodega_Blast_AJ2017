@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: af3724ff73d1cec4799d6ae85aa43060
-timeCreated: 1484376147
+timeCreated: 1484440590
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Character2
+    4300000: Wall
     4300002: Character
     7400000: Default Take
     9500000: //RootNode

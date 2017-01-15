@@ -1,39 +1,57 @@
-﻿Shader "Tut/Project/Billboard_2" {
+﻿Shader "Sprite/Billboard" {
     Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
+		_ScaleX ("Scale X", Float) = 1.0
+		_ScaleY ("Scale Y", Float) = 1.0
     }
     SubShader {
-        Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+        Tags { 
+			"Queue"="Transparent" 
+			"IgnoreProjector"="True" 
+			"RenderType"="TransparentCutout" 
+			"PreviewType"="Plane"
+		}
+
 		Pass {
-        ZTest Always
-        Blend SrcAlpha OneMinusSrcAlpha
-        CGPROGRAM
-        #pragma vertex vert
-        #pragma fragment frag
-        #include "UnityCG.cginc"
-        sampler2D _MainTex;
-        struct v2f {
-            float4 pos:SV_POSITION;
-            float2 texc:TEXCOORD0;
-        };
+			Cull Off
+			ZWrite Off
+			Blend SrcAlpha OneMinusSrcAlpha
 
-		v2f vert(appdata_base v) {
-            v2f o;
-            float4 ori=mul(UNITY_MATRIX_MV,float4(0,0,0,1));
-            float4 vt=v.vertex;
-            vt.y=vt.z;
-            vt.z=0;
-            vt.xyz+=ori.xyz;
-            o.pos=mul(UNITY_MATRIX_P,vt);
- 
-            o.texc=v.texcoord;
-            return o;
-        }
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#include "UnityCG.cginc"
 
-        float4 frag(v2f i):COLOR {
-            return tex2D(_MainTex,i.texc);
+			uniform sampler2D _MainTex;
+			uniform float _ScaleX;
+			uniform float _ScaleY;
+
+			 struct vertexInput {
+				float4 vertex : POSITION;
+				float4 tex : TEXCOORD0;
+			 };
+
+			struct vertexOutput {
+				float4 pos:SV_POSITION;
+				float2 tex:TEXCOORD0;
+			};
+
+			 vertexOutput vert(vertexInput input) {
+				vertexOutput output;
+
+				output.pos = mul(UNITY_MATRIX_P, 
+				  mul(UNITY_MATRIX_MV, float4(0.0, 0.0, 0.0, 1.0))
+				  - float4(input.vertex.x, input.vertex.y, 0.0, 0.0)
+				  * float4(_ScaleX, _ScaleY, 1.0, 1.0));
+				output.tex = input.tex;
+
+				return output;
+			 }
+
+			float4 frag(vertexOutput input) : COLOR {
+				return tex2D(_MainTex, float2(input.tex.xy));   
+			}
+			ENDCG
         }
-        ENDCG
-        }//endpass
     }
 }
