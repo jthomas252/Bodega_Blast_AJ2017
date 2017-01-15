@@ -47,15 +47,16 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Cart\Wheel.cs" />
+     <Compile Include="Assets\Scripts\CollectionPoint.cs" />
      <Compile Include="Assets\Scripts\Game\Collectable.cs" />
      <Compile Include="Assets\Scripts\Game\GameHandler.cs" />
      <Compile Include="Assets\Scripts\Interface\InterfaceHandler.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCart.cs" />
+     <Compile Include="Assets\Scripts\Sound\SoundHandler.cs" />
      <Compile Include="Assets\Scripts\SpriteBillboard.cs" />
      <Compile Include="Assets\Scripts\Utility\InputHandler.cs" />
      <Compile Include="Assets\Scripts\Utility\Top.cs" />
      <Compile Include="Assets\Scripts\WheelSet.cs" />
-     <None Include="Assets\Sounds\blank.txt" />
      <None Include="Assets\Shaders\Billboard.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

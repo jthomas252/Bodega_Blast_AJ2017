@@ -1,57 +1,74 @@
-﻿Shader "Sprite/Billboard" {
-    Properties {
-        _MainTex ("Base (RGB)", 2D) = "white" {}
+﻿Shader "Sprites/Billboard" {
+	Properties {
+		_MainTex ("Sprite Texture", 2D) = "white" {}
+		_Color ("Tint", Color) = (1,1,1,1)
 		_ScaleX ("Scale X", Float) = 1.0
 		_ScaleY ("Scale Y", Float) = 1.0
-    }
-    SubShader {
-        Tags { 
+	}
+
+	SubShader {
+		Tags { 
 			"Queue"="Transparent" 
-			"IgnoreProjector"="True" 
-			"RenderType"="TransparentCutout" 
+			"RenderType"="Transparent" 
 			"PreviewType"="Plane"
+			"IgnoreProjector"="True"
+			"DisableBatching"="True"
 		}
 
-		Pass {
-			Cull Off
-			ZWrite Off
-			Blend SrcAlpha OneMinusSrcAlpha
+		Cull Off
+		ZWrite Off
+		ZTest Always
+		Blend One OneMinusSrcAlpha
 
-			CGPROGRAM
+		Pass {
+		CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
 			#include "UnityCG.cginc"
-
-			uniform sampler2D _MainTex;
-			uniform float _ScaleX;
-			uniform float _ScaleY;
-
-			 struct vertexInput {
-				float4 vertex : POSITION;
-				float4 tex : TEXCOORD0;
-			 };
-
-			struct vertexOutput {
-				float4 pos:SV_POSITION;
-				float2 tex:TEXCOORD0;
+			
+			struct appdata_t {
+				float4 vertex   : POSITION;
+				float4 color    : COLOR;
+				float2 texcoord : TEXCOORD0;
 			};
 
-			 vertexOutput vert(vertexInput input) {
-				vertexOutput output;
+			struct v2f {
+				float4 vertex   : SV_POSITION;
+				fixed4 color    : COLOR;
+				float2 texcoord  : TEXCOORD0;
+			};
+			
+			uniform float  _ScaleX; 
+			uniform float  _ScaleY;
+			uniform fixed4 _Color;
 
-				output.pos = mul(UNITY_MATRIX_P, 
-				  mul(UNITY_MATRIX_MV, float4(0.0, 0.0, 0.0, 1.0))
-				  - float4(input.vertex.x, input.vertex.y, 0.0, 0.0)
-				  * float4(_ScaleX, _ScaleY, 1.0, 1.0));
-				output.tex = input.tex;
+			v2f vert(appdata_t IN) {
+				v2f OUT;
 
-				return output;
-			 }
-
-			float4 frag(vertexOutput input) : COLOR {
-				return tex2D(_MainTex, float2(input.tex.xy));   
+				OUT.texcoord = IN.texcoord;
+				OUT.color    = IN.color * _Color; 
+				OUT.vertex   = mul(UNITY_MATRIX_P, 
+					mul(UNITY_MATRIX_MV, float4(0,0,0,1)) 
+					+ float4(IN.vertex.x, IN.vertex.y, IN.vertex.z, 1.0)
+					* float4(_ScaleX, _ScaleY, 1.0, 1.0)); 
+				return OUT;
 			}
-			ENDCG
-        }
-    }
+
+			sampler2D _MainTex;
+			sampler2D _AlphaTex;
+
+			fixed4 SampleSpriteTexture (float2 uv) {
+				fixed4 color = tex2D (_MainTex, uv);
+
+				return color;
+			}
+
+			fixed4 frag(v2f IN) : SV_Target {
+				fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
+				c.rgb *= c.a;
+				return c;
+			}
+		ENDCG
+		}
+	}
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 
 namespace LAJ_2017 {
-
     public class PlayerCart : MonoBehaviour {
         private const float _minimumTip    = 25f; 
         private const float _tipCorrection = 35f; 
@@ -11,6 +10,9 @@ namespace LAJ_2017 {
 
         public float turningSpeed     = 2.5f; 
         public float accelerationRate = 4f; 
+
+        public Material characterSprite; 
+        public Texture2D text; 
         
         // Use this for initialization
         private void Start() {

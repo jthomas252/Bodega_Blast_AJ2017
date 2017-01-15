@@ -7,26 +7,22 @@ namespace LAJ_2017 {
 
         public Vector3 basePosition;
         public Vector3 baseRotation;
+        public float followDistance = 4f; 
 
         private void Aware() {
         }
 
         private void Update() {
-            this.transform.position = new Vector3(
-                followObject.transform.position.x,
-                followObject.transform.position.y + basePosition.y,
-                followObject.transform.position.z + basePosition.z
-                );
+            Vector3 updatedPos = followObject.transform.position - 
+                (followObject.transform.forward * followDistance); 
+            updatedPos.y       = basePosition.y; 
 
-            Quaternion q = followObject.transform.rotation;
+            Vector3 updatedRot = followObject.transform.localEulerAngles;
+            updatedRot.x       = baseRotation.x; 
+            updatedRot.z       = baseRotation.z; 
 
-            q.eulerAngles = new Vector3(
-                followObject.transform.rotation.x + baseRotation.x,
-                followObject.transform.rotation.y,
-                this.transform.rotation.z
-                );
-
-            this.transform.rotation = q;
+            transform.position         = updatedPos;
+            transform.localEulerAngles = updatedRot;
         }
     }
 }
