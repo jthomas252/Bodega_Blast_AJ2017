@@ -10,11 +10,10 @@ namespace LAJ_2017 {
         }
 
         private void Update() {
-            Vector3 billboardAngle     = Camera.main.transform.localEulerAngles;
-            billboardAngle.z          += baseRotation.z;
-            billboardAngle.x          += baseRotation.x;
-            transform.localEulerAngles  = billboardAngle;
-            Debug.Log(billboardAngle);
+            Vector3 billboardAngle     = Camera.main.transform.eulerAngles;
+            billboardAngle.z           = 0f;
+            billboardAngle.x           = 0f;
+            transform.eulerAngles      = billboardAngle;
         }
     }
 }

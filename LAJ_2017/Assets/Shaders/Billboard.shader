@@ -21,12 +21,12 @@
 			ColorMask 0
 		}
 
+		Pass {
 		Cull Off
 		ZWrite Off
 		ZTest Always
 		Blend One OneMinusSrcAlpha
 
-		Pass {
 		CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
