@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace LAJ_2017 {
+    [ExecuteInEditMode()]
     public class CameraFollow : MonoBehaviour {
         private List<MeshRenderer> hiddenMeshes;  
         public GameObject followObject;

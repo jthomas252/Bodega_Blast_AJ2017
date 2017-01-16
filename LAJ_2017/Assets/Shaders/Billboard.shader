@@ -16,15 +16,15 @@
 		}
 		LOD 200
 
-		Cull Off
-		ZWrite Off
-		ZTest Always
-		Blend One OneMinusSrcAlpha
-
 		Pass {
 			ZWrite On
 			ColorMask 0
 		}
+
+		Cull Off
+		ZWrite Off
+		ZTest Always
+		Blend One OneMinusSrcAlpha
 
 		Pass {
 		CGPROGRAM
