@@ -21,6 +21,8 @@ namespace LAJ_2017 {
                 missionTime -= Time.deltaTime;
                 Top.interfaceHandler.UpdateTime(missionTime);
             }
+
+            Top.interfaceHandler.UpdateScore(666);
         }
     }
 }
