@@ -29,7 +29,7 @@ namespace LAJ_2017 {
                 Top.interfaceHandler.UpdateScore(score);
 
                 if (_gameTime <= 0f) {
-
+                    GameOver(); 
                 }
             }
 
@@ -37,9 +37,25 @@ namespace LAJ_2017 {
                 Reset();
             }
 
+            if (Input.GetKeyDown(KeyCode.F1)) {
+                GameOver(); 
+            }
+
             if (showMenu) {
                 Camera.main.transform.Rotate(new Vector3(0f,0.25f,0f)); 
             }
+        }
+
+        public void GameOver() {
+            _paused = true; 
+            Top.interfaceHandler.ShowGameOver(score); 
+            Top.soundHandler.PlayMusic("Muzak");
+        }
+
+        public void Checkout() {
+            _paused = true; 
+            Top.interfaceHandler.ShowCheckout(score, _gameTime);
+            Top.soundHandler.PlayMusic("Muzak");
         }
 
         public void Reset() {

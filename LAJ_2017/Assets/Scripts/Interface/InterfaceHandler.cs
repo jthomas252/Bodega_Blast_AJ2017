@@ -6,6 +6,7 @@ namespace LAJ_2017 {
     public class InterfaceHandler : MonoBehaviour {
         public Text timeText;
         public Text scoreText; 
+        public Text canCheckoutText; 
 
         public RectTransform interfacePause; 
         public RectTransform interfaceGame;
@@ -69,6 +70,7 @@ namespace LAJ_2017 {
         public void ShowGameOver(int score) {
             interfaceGameOver.gameObject.SetActive(true);
             string scoreText = string.Format("{0:C}", ((float)score / 100)); 
+            gameOverText.text = "You didn't manage to check out in time but you still ended up with " + scoreText + " worth of items.\nWant to give it another shot?"; 
         }
 
         public void ShowCheckout(int score, float time) {
@@ -80,6 +82,16 @@ namespace LAJ_2017 {
             seconds     = seconds % 60; 
 
             string checkoutTime = minutes + ":" + (seconds < 10 ? "0" + seconds : "" + seconds); 
+
+            checkoutText.text = "You managed to checkout with " + scoreText + " worth of stuff and " + checkoutTime + " left on the clock.\nWant to give it another shot?";
+        }
+
+        public void ShowCanCheckout() {
+            canCheckoutText.gameObject.SetActive(true);
+        }
+
+        public void HideCanCheckout() {
+            canCheckoutText.gameObject.SetActive(false);
         }
     }
 }

@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Cart\Wheel.cs" />
      <Compile Include="Assets\Scripts\CashierArea.cs" />
+     <Compile Include="Assets\Scripts\Customer.cs" />
      <Compile Include="Assets\Scripts\Game\Collectable.cs" />
      <Compile Include="Assets\Scripts\Game\GameHandler.cs" />
      <Compile Include="Assets\Scripts\GameInit.cs" />
