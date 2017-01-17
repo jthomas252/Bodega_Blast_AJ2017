@@ -6,7 +6,9 @@ namespace LAJ_2017 {
         public int value; 
 
         private void OnTriggerEnter(Collider col) {
+            //To-do make this fly into the player cart
             if (col.GetComponent<PlayerCart>()) {
+                Top.soundHandler.PlaySound("Pickup");
                 Destroy(gameObject);
             }
         }

@@ -50,6 +50,12 @@ namespace LAJ_2017 {
             }
         }
 
+        public void StopTurn() {
+            if (steerable) {
+                wheelCollider.steerAngle = 0; 
+            }
+        }
+
         public void Brake(float speed) {
             wheelCollider.brakeTorque = speed; 
         }

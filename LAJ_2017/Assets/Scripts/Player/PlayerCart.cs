@@ -35,10 +35,10 @@ namespace LAJ_2017 {
 
             if (Input.GetKey(KeyCode.A)) {
                 wheelSet.TurnAll(-turningSpeed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.D)) {
-                wheelSet.TurnAll(turningSpeed * Time.deltaTime); 
+            } else if (Input.GetKey(KeyCode.D)) {
+                wheelSet.TurnAll(turningSpeed * Time.deltaTime);
+            } else {
+                wheelSet.StopTurn(); 
             }
 
             if (Input.GetKey(KeyCode.Space)) {
@@ -66,6 +66,12 @@ namespace LAJ_2017 {
         private void OnDrawGizmos() {
             Gizmos.color = Color.cyan; 
             Gizmos.DrawSphere(transform.position + collectionPoint, 0.1f); 
+        }
+
+        private void OnCollisionEnter(Collision c) {
+            Rigidbody _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.AddExplosionForce(20f, c.contacts[0].point, 1f);
+            Top.soundHandler.PlaySound("CartCrash", GetComponent<AudioSource>());
         }
     }
 }

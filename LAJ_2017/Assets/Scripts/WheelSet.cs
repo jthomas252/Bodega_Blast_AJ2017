@@ -26,5 +26,11 @@ namespace LAJ_2017 {
                 _wheels[i].Turn(amount);
             }
         }
+
+        public void StopTurn() {
+            for (int i = 0; i < _wheels.Length; ++i) {
+                _wheels[i].StopTurn(); 
+            }
+        }
     }
 }
