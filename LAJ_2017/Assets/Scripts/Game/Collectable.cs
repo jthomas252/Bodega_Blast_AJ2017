@@ -4,17 +4,19 @@ using System.Collections;
 namespace LAJ_2017 {
     public class Collectable : MonoBehaviour {
         public int value; 
+        public bool collected; 
 
         private void OnTriggerEnter(Collider col) {
             //To-do make this fly into the player cart
             if (col.GetComponent<PlayerCart>()) {
-                Top.soundHandler.PlaySound("Pickup");
-                Destroy(gameObject);
+                transform.SetParent(col.transform);
             }
         }
 
-        private void Update() {
-
+        public void Collect() {
+            Top.soundHandler.PlaySound("Pickup");
+            collected = true; 
+            Top.gameHandler.AddScore(value);
         }
     }
 }

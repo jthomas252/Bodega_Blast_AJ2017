@@ -67,7 +67,6 @@ namespace LAJ_2017 {
                 //Select a random instance of that sound
                 int rand = Mathf.RoundToInt(Random.Range(0,soundDictionary[name][variant].Count));
 
-                Debug.Log(name);
                 if (source != null) {
                     source.PlayOneShot(soundDictionary[name][variant][rand]);
                 } else if (soundSourceGlobal != null) {

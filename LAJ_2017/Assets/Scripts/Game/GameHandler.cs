@@ -17,7 +17,7 @@ namespace LAJ_2017 {
         private int   score     = 0; 
 
         public float gameTime  = 120.00f;
-        public float panicTime = 60f;
+        public float panicTime = 15f;
 
         public Vector3 cameraMainMenuPos; 
         public Vector3 cameraMainMenuRot;
@@ -26,7 +26,11 @@ namespace LAJ_2017 {
             if (!paused) {
                 _gameTime -= Time.deltaTime;
                 Top.interfaceHandler.UpdateTime(_gameTime);
-                Top.interfaceHandler.UpdateScore(score); 
+                Top.interfaceHandler.UpdateScore(score);
+
+                if (_gameTime <= 0f) {
+
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.R)) {
@@ -52,15 +56,34 @@ namespace LAJ_2017 {
         }
 
         public void StartGame() {
-            score    = 0; 
-            _paused  = false; 
-            showMenu = false;
+            Top.interfaceHandler.HideMainMenu(); 
+            score     = 0; 
+            _paused   = false; 
+            showMenu  = false;
+            _gameTime = gameTime;
             Top.soundHandler.PlayMusic("Main");
+        }
+
+        public void Pause() {
+            Top.soundHandler.PlayMusic("Muzak");
+            Top.interfaceHandler.ShowPauseScreen();
+            _paused = true;  
+        }
+
+        public void Unpause() {
+            Top.soundHandler.PlayMusic("Main");
+            Top.interfaceHandler.HidePauseScreen(); 
+            _paused = false; 
         }
 
         private void OnDrawGizmos() {
             Gizmos.color = Color.red; 
             Gizmos.DrawSphere(cameraMainMenuPos, 0.2f);
+        }
+
+        public void AddScore(int amount) {
+            score += amount; 
+            Top.interfaceHandler.UpdateScore(score); 
         }
     }
 }
